@@ -14,7 +14,7 @@ public class Item {
 
     private String title;
 
-    private String image;
+   // private String image;
 
     private String description;
 
@@ -25,7 +25,7 @@ public class Item {
     //Describe the relationship between Item and AppUser. Create getters and setters for hash set.
 
 
-    public Item() { //Will need to instantiate new hah set
+    public Item() { //Will need to instantiate new hash set
     }
 
     public long getId() {
@@ -44,13 +44,13 @@ public class Item {
         this.title = title;
     }
 
-    public String getImage() {
+    /*public String getImage() {
         return image;
     }
 
     public void setImage(String image) {
         this.image = image;
-    }
+    }*/
 
     public String getDescription() {
         return description;

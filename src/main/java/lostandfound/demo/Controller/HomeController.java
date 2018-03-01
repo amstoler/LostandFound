@@ -70,7 +70,7 @@ public class HomeController {
 
         itemRepo.save(item);
 
-        //Allows EVERYTHING stored in foodItemRepo to display to Itemform.
+        //Allows EVERYTHING stored in ItemRepo to display to Itemform.
         model.addAttribute("item", itemRepo.findAll());
 
         return "displayItems";

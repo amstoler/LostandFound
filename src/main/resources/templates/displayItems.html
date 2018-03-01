@@ -7,12 +7,10 @@
 <body>
 <h2>Item List</h2>
 
-<div th:each="Item : ${item}">
+<div th:each="item : ${item}">
 
-    Image:<input type="text" th:field="*{image}" />
-    <span th:if="${#fields.hasErrors('image')}"
-          th:errors="*{image}"></span><br />
-    <h4 th:inline="text"> Image: [[</h4>
+
+    <!--<img th:src="${book.image}"/>-->
     <h4 th:inline="text"> Title: [[${item.title}]] </h4>
     <h4 th:inline="text"> description: [[${item.description}]] </h4>
     <h4 th:inline="text"> type: [[${item.type}]] </h4>
