@@ -31,7 +31,7 @@ public class HomeController {
     @GetMapping("/home")
     public  String showHome() {return "home";}
 
-    @PostMapping("/index")
+    @GetMapping("/index")
     public  String index() {return "home";}
     @GetMapping("/register")
     public String registerUser(Model model)

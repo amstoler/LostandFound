@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Fragments</title>
+</head>
+<body>
+
+<!--Navbar Fragment -->
+<nav th:fragment="navbarfragement" class="navbar navbar-expand-lg navbar-light bg-light">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+
+            <li class="nav-item" >
+                <a class="nav-link" th:href="@{/home}">Login</a> <!-- <span class="sr-only">(current)</span>-->
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/index}">Index</a>
+            </li>
+
+            <li class="nav-item" >
+                <a class="nav-link" th:href="@{/regiser}">Register</a>
+            </li>
+            <li class="nav-item" >
+                <a class="nav-link" th:href="@{/addItem}">Add Item</a>
+            </li>
+        </ul>
+
+    </div>
+</nav>
+<div class="container-fluid">
+</div>
+
+</body>
+</html>
