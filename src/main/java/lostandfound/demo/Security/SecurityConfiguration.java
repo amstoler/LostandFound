@@ -34,8 +34,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
                 .anyRequest().authenticated()
                 .and()
-                .formLogin()
-                //.formLogin().successForwardUrl("/loggedin")
+                .formLogin().defaultSuccessUrl("/home")
+                //.formLogin().successForwardUrl("/home")
                 .and()
                 //Displays 'you have been logged out' message on login form when a user logs out (default login form). Change this
                 //to logout?logout if you are using a custom form.
