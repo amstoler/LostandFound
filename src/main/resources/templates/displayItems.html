@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Display Items</title>
+</head>
+<body>
+<h2>Item List</h2>
+
+<div th:each="Item : ${item}">
+
+    Image:<input type="text" th:field="*{image}" />
+    <span th:if="${#fields.hasErrors('image')}"
+          th:errors="*{image}"></span><br />
+    <h4 th:inline="text"> Image: [[</h4>
+    <h4 th:inline="text"> Title: [[${item.title}]] </h4>
+    <h4 th:inline="text"> description: [[${item.description}]] </h4>
+    <h4 th:inline="text"> type: [[${item.type}]] </h4>
+</div>
+</body>
+</html>
