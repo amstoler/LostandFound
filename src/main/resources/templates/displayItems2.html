@@ -12,7 +12,7 @@
 <body>
 <div th:replace="fragments::navbarfragement"></div>
 
-<div class="container" th:each="item : ${item}">
+<span class="container" th:each="item : ${item}">
     <ul class="list-group">
         <li class="list-group-item clearfix">
             <img class="img-responsive img-rounded" src="http://placehold.it/256/163a63"  alt=""/>
@@ -30,6 +30,16 @@
                 <br />
                 <a href="#"><small>Details&#8230;</small></a>
             </p>
+            <p th:inline="text" class="list-group-item-text lead">
+                Item Status: [[${item.itemStatus}]]
+                <br />
+
+            </p>
+
+            <span sec:authorize="hasAuthority('ADMIN')">
+                <a th:href="@{/additemtofound/{id} (id=${item.id})}"><small>Add item to found</small></a>
+        </span>
+
             <div class="btn-toolbar pull-right" role="toolbar" aria-label="">
                 <div class="btn-group">
                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-fw fa-list"></i> <span class="caret"></span></button>

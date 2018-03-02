@@ -6,11 +6,13 @@ import lostandfound.demo.Repositories.AppRoleRepository;
 import lostandfound.demo.Repositories.AppUserRepository;
 import lostandfound.demo.Repositories.ItemRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpServletRequest;
@@ -87,6 +89,21 @@ public class HomeController {
 
         return "displayItems2";
 
+    }
+
+    @GetMapping("/additemtofound/{id}")
+    public String additemtofound(@PathVariable("id") long id, Model model, Authentication auth){
+
+        Item item = itemRepo.findOne(id);
+        AppUser appUser = appUserRepository.findAppUserByUsername(auth.getName());
+        appUser.addItemtoAppUser(item);
+        item.setItemStatus("Found");
+        model.addAttribute("itemsfoundlist", itemRepo.findOne(id));
+        itemRepo.save(item);
+        appUserRepository.save(appUser);
+        model.addAttribute("listusers", appUserRepository.findAll());
+        model.addAttribute("itemlist", appUserRepository.findAll());
+        return "redirect:/displayItems";
     }
 
 
