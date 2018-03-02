@@ -17,7 +17,7 @@ public class Item {
 
     private String description;
 
-    private String type;
+    private String itemType;
 //Admin only should be able to change status of item. Lost or found.
    // private String itemStatus;
 
@@ -29,10 +29,10 @@ public class Item {
     public Item() {this.users = new HashSet<>();}
 
 
-    public Item(String title, String description, String type) {
+    public Item(String title, String description, String itemType) {
         this.title = title;
         this.description = description;
-        this.type = type;
+        this.itemType = itemType;
         this.users = new HashSet<>();
     }
 
@@ -52,6 +52,14 @@ public class Item {
         this.title = title;
     }
 
+    public String getItemType() {
+        return itemType;
+    }
+
+    public void setItemType(String itemType) {
+        this.itemType = itemType;
+    }
+
     /*public String getImage() {
         return image;
     }
@@ -68,11 +76,5 @@ public class Item {
         this.description = description;
     }
 
-    public String getType() {
-        return type;
-    }
 
-    public void setType(String type) {
-        this.type = type;
-    }
 }

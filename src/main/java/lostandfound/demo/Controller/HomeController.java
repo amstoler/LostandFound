@@ -69,14 +69,14 @@ public class HomeController {
     public String showItemForm(Model model) {
         model.addAttribute("item", new Item());
 
-        return "itemForm";
+        return "itemForm2";
 
     }
 
     @PostMapping("/processItem")
     public String displayItems(@Valid @ModelAttribute("item") Item item, Model model, BindingResult result) {
         if (result.hasErrors()) {
-            return "itemForm";
+            return "itemForm2";
         }
 
         itemRepo.save(item);
