@@ -28,16 +28,17 @@ public class HomeController {
     @Autowired
     ItemRepo itemRepo;
 
-    @GetMapping("/home")
-    public  String showHome() {return "home";}
+    @GetMapping("/")
+    public  String showHome() {return "index";}
 
     @GetMapping("/index")
-    public  String index() {return "home";}
+    public  String index() {return "index";}
+
     @GetMapping("/register")
     public String registerUser(Model model)
     {
         model.addAttribute("newuser",new AppUser());
-        return "register";
+        return "register2";
     }
 
     @PostMapping("/register")
@@ -45,13 +46,13 @@ public class HomeController {
     {
         if(result.hasErrors())
         {
-            return "register";
+            return "register2";
         }
 
         appUser.addRole(appRoleRepository.findAppRoleByRoleName("USER"));
 
         appUserRepository.save(appUser);
-        return "redirect:/user/home";
+        return "redirect:/";
     }
 
 
@@ -61,7 +62,7 @@ public class HomeController {
         model.addAttribute("item", new Item());
         model.addAttribute("item", itemRepo.findAll());
 
-        return "displayItems";
+        return "displayItems2";
 
     }
 
@@ -84,7 +85,7 @@ public class HomeController {
         //Allows EVERYTHING stored in ItemRepo to display to Itemform.
         model.addAttribute("item", itemRepo.findAll());
 
-        return "displayItems";
+        return "displayItems2";
 
     }
 

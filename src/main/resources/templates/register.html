@@ -10,12 +10,26 @@
 </head>
 <body>
 <div th:replace="fragments::navbarfragement"></div>
-You have reached register page
+Please register an account here.
 
-<form th:action="@{/user/register}" th:object="${newuser}" method="post">
+<form th:action="@{/register}" th:object="${newuser}" method="post">
     <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>
 
+    <label for="firstName">firstName</label>
+    <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></span>
+    <input type="text" class="form-control" th:field="*{firstName}"/>
+
+    <label for="lastName">lastName</label>
+    <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></span>
+    <input type="text" class="form-control" th:field="*{lastName}"/>
+
+    <label for="email">email</label>
+    <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+    <input type="text" class="form-control" th:field="*{email}"/>
+
+
     <label for="username">Username</label>
+    <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>
     <input type="text" class="form-control" th:field="*{username}"/>
 
     <label for="password">Password</label>
