@@ -38,7 +38,7 @@ public class AppUser {
 
     public AppUser() {
         this.roles = new HashSet<>();
-        //this.foodItems = new HashSet();
+        this.items = new HashSet();
     }
 
     public AppUser(String email, String password, String firstName, String lastName, String username) {
@@ -48,10 +48,10 @@ public class AppUser {
         this.lastName = lastName;
         this.username = username;
         this.roles = new HashSet<>();
-        //this.foodItems = new HashSet();
+        this.items = new HashSet();
     }
 
-    //Creating an add method for addRole
+    //Creating an ADD method for addRole
     public void addRole(AppRole role) {
         this.roles.add(role);
     }
@@ -68,27 +68,29 @@ public class AppUser {
 
     //End of Getters and setters for "Set<AppRole>"
 
-   /* @ManyToMany(fetch = FetchType.EAGER)
+
+
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(joinColumns = @JoinColumn(name = "user_id"),
-    inverseJoinColumns = @JoinColumn(name = "fooditem_id"))
-    private Set<FoodItem> foodItems;*/
+    inverseJoinColumns = @JoinColumn(name = "item_id"))
+    private Set<Item> items;
 
     //Start Getters and setters for "Set<FoodItem>"
-    /*public Set<FoodItem> getFoodItems() {
-        return foodItems;
-    }*/
+    public Set<Item> getItems() {
+        return items;
+    }
 
+    public void setItems(Set<Item> items) {
+        this.items = items;
+    }
 
-    /*public void setFoodItems(Set<FoodItem> foodItems) {
-        this.foodItems = foodItems;
-    }*/
     //End Getters and setters for "Set<FoodItem>"
 
 
 
-    //Creating an add method for addFoodItem
-    /*public void addFoodItem(FoodItem foodItem) {this.foodItems.add(foodItem);
-    }*/
+    //Creating an ADD method for Item. Should be void since no return type required
+    public void addItemtoAppUser(Item item) {this.items.add(item);
+    }
 
 
 

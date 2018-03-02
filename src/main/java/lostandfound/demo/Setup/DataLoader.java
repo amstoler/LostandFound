@@ -3,8 +3,10 @@ package lostandfound.demo.Setup;
 
 import lostandfound.demo.Model.AppRole;
 import lostandfound.demo.Model.AppUser;
+import lostandfound.demo.Model.Item;
 import lostandfound.demo.Repositories.AppRoleRepository;
 import lostandfound.demo.Repositories.AppUserRepository;
+import lostandfound.demo.Repositories.ItemRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -18,8 +20,8 @@ public class DataLoader implements CommandLineRunner {
     @Autowired
     AppRoleRepository roleRepo;
 
-    //@Autowired
-    //FoodItemRepo foodItemRepo;
+    @Autowired
+    ItemRepo itemRepo;
 
     @Override
     public void run (String...strings) throws Exception {
@@ -32,17 +34,19 @@ public class DataLoader implements CommandLineRunner {
 
         AppUser user = new AppUser("ariel@email.com","password","Ariel","Stoler", "user");
         user.addRole(roleRepo.findAppRoleByRoleName("USER"));
-        //FoodItem foodItem = new FoodItem("Juice", "10", "drink");
-        //foodItemRepo.save(foodItem);
-        //user.addFoodItem(foodItem);
+        Item item = new Item("Shoe", "black", "other");
+        itemRepo.save(item);
+        user.addItemtoAppUser(item);
         userRepo.save(user);
 
         user = new AppUser("Bob@email.com", "password", "Bob", "Bobberson", "admin");
         user.addRole(roleRepo.findAppRoleByRoleName("ADMIN"));
-        //foodItem = new FoodItem("Pasta", "10", "food");
-        //foodItemRepo.save(foodItem);
-       // user.addFoodItem(foodItem);
+        item = new Item("shirt", "red", "clothes");
+        itemRepo.save(item);
+        user.addItemtoAppUser(item);
         userRepo.save(user);
+
+        //Adjust below data to match above examples for "items"
 
       /*  user = new AppUser("Tim@email.com", "password", "Tim", "Timmerson", "admin");
         user.addRole(roleRepo.findAppRoleByRoleName("ADMIN"));

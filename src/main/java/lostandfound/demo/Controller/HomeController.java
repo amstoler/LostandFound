@@ -54,7 +54,18 @@ public class HomeController {
         return "redirect:/user/home";
     }
 
-    @GetMapping("/addItem")
+
+
+    @GetMapping("/displayItems")
+    public String showdisplayItems(Model model) {
+        model.addAttribute("item", new Item());
+        model.addAttribute("item", itemRepo.findAll());
+
+        return "displayItems";
+
+    }
+
+      @GetMapping("/addItem")
     public String showItemForm(Model model) {
         model.addAttribute("item", new Item());
 
