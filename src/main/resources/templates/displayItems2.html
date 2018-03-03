@@ -23,12 +23,12 @@
             <p th:inline="text" class="list-group-item-text lead">
                 description: [[${item.description}]]
                 <br />
-                <a href="#"><small>Details&#8230;</small></a>
+
             </p>
             <p th:inline="text" class="list-group-item-text lead">
                 itemType: [[${item.itemType}]]
                 <br />
-                <a href="#"><small>Details&#8230;</small></a>
+
             </p>
             <p th:inline="text" class="list-group-item-text lead">
                 Item Status: [[${item.itemStatus}]]
@@ -39,25 +39,6 @@
             <span sec:authorize="hasAuthority('ADMIN')">
                 <a th:href="@{/additemtofound/{id} (id=${item.id})}"><small>Add item to found</small></a>
         </span>
-
-            <div class="btn-toolbar pull-right" role="toolbar" aria-label="">
-                <div class="btn-group">
-                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-fw fa-list"></i> <span class="caret"></span></button>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Add to new list</a></li>
-                        <li role="separator" class="divider"></li>
-                        <li><a href="#">A list</a></li>
-                        <li><a href="#">Another list</a></li>
-                        <li><a href="#">Third list</a></li>
-                    </ul>
-                </div>
-                <a href="#" class="btn btn-default">Add to cart</a>
-                <a href="#" class="btn btn-primary">$29.99</a>
-            </div>
-        </li>
-    </ul>
-</div>
-
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
