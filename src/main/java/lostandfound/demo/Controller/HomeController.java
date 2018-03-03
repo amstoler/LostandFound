@@ -91,6 +91,16 @@ public class HomeController {
 
     }
 
+    @GetMapping("/personalitems")
+    public String showpersonalitems(Model model) {
+      /*  model.addAttribute("personalitem", new Item());
+        model.addAttribute()*/
+
+        return "personalitems";
+
+    }
+
+
     @GetMapping("/additemtofound/{id}")
     public String additemtofound(@PathVariable("id") long id, Model model, Authentication auth){
 
