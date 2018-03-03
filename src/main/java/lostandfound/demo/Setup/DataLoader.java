@@ -34,14 +34,14 @@ public class DataLoader implements CommandLineRunner {
 
         AppUser user = new AppUser("ariel@email.com","password","Ariel","Stoler", "user");
         user.addRole(roleRepo.findAppRoleByRoleName("USER"));
-        Item item = new Item("Shoe", "black", "other", "");
+        Item item = new Item("Shoe", "black", "other", "lost");
         itemRepo.save(item);
         user.addItemtoAppUser(item);
         userRepo.save(user);
 
         user = new AppUser("Bob@email.com", "password", "Bob", "Bobberson", "admin");
         user.addRole(roleRepo.findAppRoleByRoleName("ADMIN"));
-        item = new Item("shirt", "red", "clothes", "");
+        item = new Item("shirt", "red", "clothes", "lost");
         itemRepo.save(item);
         user.addItemtoAppUser(item);
         userRepo.save(user);

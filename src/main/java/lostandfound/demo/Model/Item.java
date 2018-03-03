@@ -20,7 +20,7 @@ public class Item {
     private String itemType;
 
     //Admin only should be able to change status of item. Lost or found.
-    private String itemStatus;
+    private String itemStatus = "lost";
 
     //Describe the relationship between Item and AppUser. Create getters and setters for hash set.
 
