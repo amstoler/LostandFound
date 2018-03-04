@@ -10,10 +10,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -30,11 +27,19 @@ public class HomeController {
     @Autowired
     ItemRepo itemRepo;
 
-    @GetMapping("/")
+    @GetMapping(value = {"/", "/home"})
     public  String showHome() {return "index";}
 
     @GetMapping("/index")
     public  String index() {return "index";}
+
+    @PostMapping("/login")
+    public String login()
+    {
+        return "/login2";
+    }
+
+
 
     @GetMapping("/register")
     public String registerUser(Model model)
@@ -77,12 +82,14 @@ public class HomeController {
     }
 
     @PostMapping("/processItem")
-    public String displayItems(@Valid @ModelAttribute("item") Item item, Model model, BindingResult result) {
+    public String displayItems(@Valid @ModelAttribute("item") Item item, Model model, BindingResult result, Authentication auth) {
         if (result.hasErrors()) {
             return "itemForm2";
         }
-
+        AppUser appUser = appUserRepository.findAppUserByUsername(auth.getName());
         itemRepo.save(item);
+        appUser.addItemtoAppUser(item);
+        appUserRepository.save(appUser);
 
         //Allows EVERYTHING stored in ItemRepo to display to Itemform.
         model.addAttribute("item", itemRepo.findAll());
@@ -91,10 +98,15 @@ public class HomeController {
 
     }
 
+    //incomplete method NEEDS TESTING
     @GetMapping("/personalitems")
-    public String showpersonalitems(Model model) {
-      /*  model.addAttribute("personalitem", new Item());
-        model.addAttribute()*/
+    public String showpersonalitems(Model model, Authentication auth) {
+
+       /* Item item = itemRepo.findOne(id);*/
+        AppUser appUser = appUserRepository.findAppUserByUsername(auth.getName());
+        model.addAttribute("personalitems", appUser.getItems());
+
+
 
         return "personalitems";
 
@@ -115,6 +127,8 @@ public class HomeController {
         model.addAttribute("itemlist", appUserRepository.findAll());
         return "redirect:/displayItems";
     }
+
+    //Insert @GetMapping("/additemtolost/{id}")
 
 
 }

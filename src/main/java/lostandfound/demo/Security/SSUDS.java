@@ -48,8 +48,9 @@ public class SSUDS implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Set <GrantedAuthority> userAuthorities = new HashSet<>();
         AppUser thisUser = appUserRepository.findAppUserByUsername(username);
-        if(thisUser==null)
-            throw new UsernameNotFoundException("Invalid username or password");
+        if(thisUser==null){
+            throw new UsernameNotFoundException("Invalid username or password");}
+        System.out.println(thisUser.getUsername()+" is granted access");
         return new User(thisUser.getUsername(),thisUser.getPassword(),grantedAuthorities(thisUser));
     }
 
@@ -60,6 +61,7 @@ public class SSUDS implements UserDetailsService {
         {
             userAuthorities.add(new SimpleGrantedAuthority(eachRole.getRoleName()));
         }
+        System.out.println("With role: " + userAuthorities.toString());
         return userAuthorities;
     }
 }

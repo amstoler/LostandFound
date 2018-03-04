@@ -28,18 +28,19 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/","/register","/displayItems","/css/**","/vendor/**","/js/**","/img/**","/addItem").permitAll()
-                .antMatchers("/personalitems").hasAnyAuthority("USER","ADMIN")
+                .antMatchers("/", "/home", "/register","/displayItems","/css/**","/js/**","/img/**").permitAll()
+                .antMatchers("/personalitems","/addItem").hasAnyAuthority("USER","ADMIN")
                 //.antMatchers("/references","/profile").hasAuthority("ADMIN")
-
                 .anyRequest().authenticated()
                 .and()
-                .formLogin().defaultSuccessUrl("/")
+                .formLogin().defaultSuccessUrl("/").permitAll()
+                //.loginPage("/login").successForwardUrl("/").permitAll()
                 //.formLogin().successForwardUrl("/home")
                 .and()
                 //Displays 'you have been logged out' message on login form when a user logs out (default login form). Change this
                 //to logout?logout if you are using a custom form.
-                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).permitAll().logoutSuccessUrl("/");
+                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .logoutSuccessUrl("/").permitAll().permitAll();
 
         //For H2:
         http.csrf().disable();
