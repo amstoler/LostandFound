@@ -86,10 +86,15 @@ public class HomeController {
         if (result.hasErrors()) {
             return "itemForm2";
         }
+
+
         AppUser appUser = appUserRepository.findAppUserByUsername(auth.getName());
         itemRepo.save(item);
         appUser.addItemtoAppUser(item);
         appUserRepository.save(appUser);
+
+        //End of show. This method existed before to display ALL items but modified to save items
+        // to currently logged in user.
 
         //Allows EVERYTHING stored in ItemRepo to display to Itemform.
         model.addAttribute("item", itemRepo.findAll());
@@ -129,6 +134,22 @@ public class HomeController {
     }
 
     //Insert @GetMapping("/additemtolost/{id}")
+
+    @GetMapping("/additemtolost/{id}")
+    public String additemtolostlist(@PathVariable("id") long id, Model model, Authentication auth){
+
+        Item item = itemRepo.findOne(id);
+//        Must use database user not spring security user
+        AppUser appUser = appUserRepository.findAppUserByUsername(auth.getName());
+        appUser.addItemtoAppUser(item);
+        item.setItemStatus("Lost");
+        model.addAttribute("lostitemslist", itemRepo.findOne(id));
+        itemRepo.save(item);
+        appUserRepository.save(appUser);
+        model.addAttribute("userlist",appUserRepository.findAll());
+        model.addAttribute("itemslist",appUserRepository.findAll());
+        return "redirect:/displayItems";
+    }
 
 
 }

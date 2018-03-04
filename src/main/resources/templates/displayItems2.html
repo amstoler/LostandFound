@@ -38,6 +38,11 @@
                 <a th:href="@{/additemtofound/{id} (id=${item.id})}"><small>Add item to found</small></a>
         </span>
 
+               <span sec:authorize="hasAuthority('ADMIN')">
+                <a th:href="@{/additemtolost/{id} (id=${item.id})}"><small>Add item to Lost</small></a>
+        </span>
+
+
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
