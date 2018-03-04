@@ -19,13 +19,19 @@
         <h3>Item Form</h3>
         <h4>Contact us today, and get reply with in 24 hours!</h4>
 
+
         <fieldset>
-            <input placeholder="Item Title" type="text" tabindex="1" required autofocus th:field="*{title}">
+            <input placeholder="Item image" type="text" tabindex="1" autofocus th:field="*{image}">
+            <span th:if="${#fields.hasErrors('image')}" th:errors="*{image}"></span>
+        </fieldset>
+
+        <fieldset>
+            <input placeholder="Item Title" type="text" tabindex="2" required autofocus th:field="*{title}">
             <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></span>
         </fieldset>
 
         <fieldset>
-            <input placeholder="description" type="text" tabindex="2" required autofocus th:field="*{description}">
+            <input placeholder="description" type="text" tabindex="3" required autofocus th:field="*{description}">
             <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span>
         </fieldset>
 

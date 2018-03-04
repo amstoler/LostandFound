@@ -13,7 +13,7 @@ public class Item {
 
     private String title;
 
-   // private String image;
+    private String image;
 
     private String description;
 
@@ -30,12 +30,13 @@ public class Item {
     public Item() {this.users = new HashSet<>();}
 
 
-    public Item(String title, String description, String itemType, String itemStatus) {
+    public Item(String title, String description, String itemType, String itemStatus, String image) {
         this.title = title;
         this.description = description;
         this.itemType = itemType;
         this.itemStatus = itemStatus;
         this.users = new HashSet<>();
+        this.image = image;
     }
 
     public long getId() {
@@ -62,13 +63,13 @@ public class Item {
         this.itemType = itemType;
     }
 
-    /*public String getImage() {
+    public String getImage() {
         return image;
     }
 
     public void setImage(String image) {
         this.image = image;
-    }*/
+    }
 
     public String getDescription() {
         return description;

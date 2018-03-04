@@ -87,6 +87,10 @@ public class HomeController {
             return "itemForm2";
         }
 
+        if(item.getImage().isEmpty()){
+            item.setImage("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQv4jSEk4XcXfmO7GQcd-Di4E15P082E3P88qM1_rwRqsZUB9DZ");
+        }
+
 
         AppUser appUser = appUserRepository.findAppUserByUsername(auth.getName());
         itemRepo.save(item);
