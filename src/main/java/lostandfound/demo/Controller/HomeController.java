@@ -69,9 +69,37 @@ public class HomeController {
         model.addAttribute("item", new Item());
         model.addAttribute("item", itemRepo.findAll());
 
+
+
+
+        //Below displays all items weather lost or found
+       // model.addAttribute("item", itemRepo.findAll());
+       /* if(item.getItemStatus().equalsIgnoreCase("Lost")){
+            model.addAttribute("item",appUserRepository.findAll());
+
+        }*/
+
+        /*if((itemRepo.findAllByitemStatusContainingIgnoreCase(String "lost") {
+            model.addAttribute("item", appUserRepository.findAll());
+        }
+*/
+
         return "displayItems2";
 
     }
+// Needs to be tested more. This should be list of ONLY lost items
+/*@GetMapping("/lostitmes")
+public String lostitemslist(@ModelAttribute("item") Item item,Model model){
+
+    if(item.getItemStatus().equalsIgnoreCase("Lost")){
+        model.addAttribute("item",appUserRepository.findAll());
+
+    }
+
+    return "redirect:/displayItems2";
+
+
+}*/
 
       @GetMapping("/addItem")
     public String showItemForm(Model model) {
@@ -111,7 +139,6 @@ public class HomeController {
     @GetMapping("/personalitems")
     public String showpersonalitems(Model model, Authentication auth) {
 
-       /* Item item = itemRepo.findOne(id);*/
         AppUser appUser = appUserRepository.findAppUserByUsername(auth.getName());
         model.addAttribute("personalitems", appUser.getItems());
 
