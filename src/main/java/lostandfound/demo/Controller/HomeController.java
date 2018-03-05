@@ -63,30 +63,36 @@ public class HomeController {
     }
 
 
-
-    @GetMapping("/displayItems")
+//Tested and Works! Commentating out to improve.
+   /* @GetMapping("/displayItems")
     public String showdisplayItems(Model model) {
         model.addAttribute("item", new Item());
         model.addAttribute("item", itemRepo.findAll());
 
+        return "displayItems2";
+    }*/
 
-
+    //Testing below to filter for item status.
+    @GetMapping("/displayItems")
+    public String showdisplayItems(Model model) {
+        model.addAttribute("item", new Item());
+        model.addAttribute("item", itemRepo.findAllByitemStatusContainingIgnoreCase("lost"));
 
         //Below displays all items weather lost or found
        // model.addAttribute("item", itemRepo.findAll());
-       /* if(item.getItemStatus().equalsIgnoreCase("Lost")){
+      /*  if(item.getItemStatus().equalsIgnoreCase("Lost")){
             model.addAttribute("item",appUserRepository.findAll());
 
+        }
+
+     if((itemRepo.findAllByitemStatusContainingIgnoreCase(String "lost") {
+            model.addAttribute("item", appUserRepository.findAll());
         }*/
 
-        /*if((itemRepo.findAllByitemStatusContainingIgnoreCase(String "lost") {
-            model.addAttribute("item", appUserRepository.findAll());
-        }
-*/
-
         return "displayItems2";
-
     }
+
+
 // Needs to be tested more. This should be list of ONLY lost items
 /*@GetMapping("/lostitmes")
 public String lostitemslist(@ModelAttribute("item") Item item,Model model){
@@ -130,21 +136,23 @@ public String lostitemslist(@ModelAttribute("item") Item item,Model model){
 
         //Allows EVERYTHING stored in ItemRepo to display to Itemform.
         model.addAttribute("item", itemRepo.findAll());
-
-        return "displayItems2";
+//testing needed if want to display to return displayitems2
+        return "home";
 
     }
 
     //incomplete method NEEDS TESTING
-    @GetMapping("/personalitems")
-    public String showpersonalitems(Model model, Authentication auth) {
-
+    @GetMapping("/founditems")
+    public String showfounditems(Model model, Authentication auth) {
+        model.addAttribute("item", new Item());
         AppUser appUser = appUserRepository.findAppUserByUsername(auth.getName());
-        model.addAttribute("personalitems", appUser.getItems());
+        model.addAttribute("item", itemRepo.findAllByitemStatusContainingIgnoreCase("found"));
+        //below line added to test and filter for only FOUND items
 
+        //model.addAttribute("item", itemRepo.findAllByitemStatusContainingIgnoreCase("found"));
+       // model.addAttribute("founditems", appUser.getItems(itemRepo.findAllByitemStatusContainingIgnoreCase("found")));
 
-
-        return "personalitems";
+        return "founditems";
 
     }
 
