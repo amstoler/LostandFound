@@ -14,10 +14,14 @@
 <span class="container" th:each="item : ${personalitems}">
     <ul class="list-group">
         <li class="list-group-item clearfix">
-            <img class="img-responsive img-rounded" src="http://placehold.it/256/163a63"  alt=""/>
-            <h3 th:inline="text" class="list-group-item-heading">
+
+            <p th:inline="text" class="list-group-item-heading">
+                <img th:src="${item.image}"/>
+            </p>
+
+            <p th:inline="text" class="list-group-item-heading">
                 Title: [[${item.title}]]
-            </h3>
+            </p>
             <p th:inline="text" class="list-group-item-text lead">
                 description: [[${item.description}]]
                 <br />
